@@ -33,7 +33,7 @@ sudo apt install libfuse2
 ```
 
 ## User guide
-> To follow this tutorial, download [template_warping.m](./template_warping.m) and including the example folder ([example](./example))
+> To follow this tutorial, download [template_warping.m](./template_warping.m) and the example folder ([example](./example)).
 
 1. Amend [template_warping.m](./template_warping.m) to include path to your fieldtrip installation and the directory containing the template MRI and the 3D mesh of the subject's head.
 2. Amend any options (whether to pad the template MRI or crop the neck line, we recommend the defaults).
