@@ -1,0 +1,1 @@
+Two utilities that remove some headaches when trying to run meshlab and matlab. Change the paths to point to the relevant application on your system, make them executable (remove write permissions) and add their location to your PATH variable.
