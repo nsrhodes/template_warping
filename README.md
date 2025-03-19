@@ -34,9 +34,9 @@ sudo apt install libfuse2
 
 ## User guide
 
-1. Amend ![](./template_warping.m) to include path to your fieldtrip installation and the directory containing the template MRI and the 3D mesh of the subject's head.
+1. Amend [](./template_warping.m) to include path to your fieldtrip installation and the directory containing the template MRI and the 3D mesh of the subject's head.
 2. Amend any options (whether to pad the template MRI or crop the neck line, we recommend the defaults).
-3. Run ![](./template_warping.m)
+3. Run [](./template_warping.m)
 4. When prompted, select the template MRI (here ./example/Adult_template.nii.gz)
 	A head-segmentation and generation of the scalp mesh will follow. It is likely that you will have to specify the coordinate system during this step. When prompted in the command window, enter the correct axis directions. You will see a figure showing MRI slices .
 	![Fieldtrip MRI slice plot](https://github.com/nsrhodes/template_warping/blob/main/screenshots/set_coord_sys.png)
