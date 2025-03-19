@@ -55,7 +55,9 @@ sudo apt install libfuse2
 9. Load the generated template MRI scalp
    (saved as <path_to_template_mri_file>\_template_points.stl)
    and the head mesh (here sub-101_head.ply)
+
    ![Meshlab, Load MRI mesh and head scan](https://github.com/nsrhodes/template_warping/blob/main/screenshots/meshlab_select.png)
+	
 	If the head mesh is in mm, the MRI mesh will be invisible
 	![Meshlab interface - only head mesh is visible](https://github.com/nsrhodes/template_warping/blob/main/screenshots/only_one_visible.png)
 10. If necessary, rescale the **head mesh** to metre-units by right-clicking and selecting "Matrix: Set from translation/rotation/scale"
