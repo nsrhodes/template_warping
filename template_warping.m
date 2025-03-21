@@ -21,7 +21,8 @@ if ~exist(fieldtrip_path,"dir")
 end
 
 if ~exist(project_dir,"dir")
-    error("project_dir not set correctly")
+    warning("project_dir not set correctly, using current directory")
+    project_dir = "."
 end
 
 addpath(fieldtrip_path)
@@ -32,6 +33,8 @@ ft_defaults
 
 cd(project_dir) % cd to directory
 [mri_file,mri_path] = uigetfile({'*.nii;*.nii.gz'},"Pick the template MRI"); % pick MRI nifty
+cd(mri_path)
+
 mri_file_path = [mri_path mri_file];
 if endsWith(mri_file_path,'gz')
     extension_len = 7;
@@ -42,18 +45,21 @@ mri_f_head = mri_file(1:end-extension_len);
 template_mesh_stl = [mri_path mri_f_head '_template_points.stl'];
 
 mri_orig = ft_read_mri(mri_file_path); % read in MRI
+padded_str = "";
+if padded;
+    padded_str = 'padded';
+    padded_mri = [mri_path mri_f_head '_padded.nii'];
+end
 
 if ~exist(template_mesh_stl,'file')
 
     if padded
-        padded_mri = [mri_path mri_f_head '_padded.nii'];
         crg = [];
         cfg.dim = mri_orig.dim + 50;
         cfg.method = 'cubic';
         cfg.resolution = 1;
         mri_orig = ft_volumereslice(cfg,mri_orig);
         ft_write_mri(padded_mri,mri_orig,'dataformat','nifti')
-        padded_str = 'padded';
     end
 
     if ~exist([mri_path mri_f_head padded_str '_segmentation.mat'],"file")
@@ -105,6 +111,9 @@ waitfor(msgbox(["* Open Meshlab";...
     "3. Roughly align the head-only mesh using 'Points-based gluing'";...
     "    Be careful to select the MRI mesh, then 'Glue here' to bring everything";...
     "    into MRI space.";...
+    "    Select matching points on the face by double-clicking on each mesh.";...
+    "    4-7 Points should be sufficient. For an example, see the in-depth README at";...
+    "    https://github.com/nsrhodes/template_warping";...
     " ";...
     "4. Freeze the transform by selecting the head only mesh, right-clicking and ";...
     "  selecting 'Matrix: Freeze current matrix'";...
